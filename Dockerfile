@@ -8,5 +8,7 @@ EXPOSE 15000
 
 # Simple startup script to avoid some issues observed with container restart 
 ADD samplecserver.c /samplecserver.c
+#COPY run.sh /run.sh
+#RUN chmod +x run.sh
 RUN gcc -o samplecserver samplecserver.c
-CMD ./samplecserver &
+ENTRYPOINT ["./samplecserver"]
