@@ -9,3 +9,5 @@ EXPOSE 15000
 
 # Simple startup script to avoid some issues observed with container restart 
 ADD samplecserver.c /samplecserver.c
+RUN gcc -o samplecserver samplecserver.c
+CMD ./samplecserver &
