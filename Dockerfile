@@ -4,7 +4,7 @@ MAINTAINER chauhan.suryaveer@gmail.com
 RUN apt-get update -y && apt-get install -y gcc
 RUN echo "HELLO"
 
-EXPOSE 15000
+EXPOSE 80
 
 # Simple startup script to avoid some issues observed with container restart 
 ADD samplecserver.c /samplecserver.c
