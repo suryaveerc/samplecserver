@@ -11,8 +11,15 @@ int main() {
    socklen_t addrlen;    
    int bufsize = 1024;    
    char *buffer = malloc(bufsize);    
-   struct sockaddr_in address;    
- 
+   struct sockaddr_in address;  
+   char* host;
+   host = getenv("HOSTNAME");
+ char msg[50]= "Got your message ";
+   strcat(msg,host);
+   int len;
+   len=strlen(msg);
+   msg[len] = '\n';
+   len+=1;
    if ((create_socket = socket(AF_INET, SOCK_STREAM, 0)) > 0){    
       printf("The socket was created\n");
    }
@@ -43,10 +50,10 @@ int main() {
         
       recv(new_socket, buffer, bufsize, 0);    
       printf("%s\n", buffer);    
-      write(new_socket, "HTTP/1.1 200 OK\n", 16);
-	  write(new_socket, "Content-length: 46\n", 19);
-	  write(new_socket, "Content-Type: text/html\n\n", 25);
-	  write(new_socket, "<html><body><H1>Hello world</H1></body></html>",46);
+      write(new_socket, msg,len);
+	//  write(new_socket, "Content-length: 46\n", 19);
+	//  write(new_socket, "Content-Type: text/html\n\n", 25);
+	//  write(new_socket, "<html><body><H1>Hello world</H1></body></html>",46);
       close(new_socket);    
    }    
    close(create_socket);    
